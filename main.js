@@ -22,3 +22,16 @@
 //         "text": "Moderate rain",
 //         "icon": "//cdn.weatherapi.com/weather/64x64/day/302.png",
 //         "code": 1189
+
+const getValuesInput = () => {};
+
+const fetchData = () => {};
+
+const displayData = () => {};
+//a result div-be jeleniti meg a kapot adatokat
+
+const main = () => {};
+
+window.addEventListener("load", main);
+
+// az input value-kat a button addeventlisner-jével átt kell adni a fetchdatanak
