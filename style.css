@@ -8,6 +8,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-content: center;
 }
 .input-container {
@@ -26,11 +27,15 @@ select {
   height: 25px;
 }
 .btn {
-  display: flex;
-  justify-content: center;
 }
 .result {
   background-color: blueviolet;
   width: 200px;
   height: 200px;
+}
+.content {
+  display: flex;
+
+  justify-content: center;
+  align-content: center;
 }
