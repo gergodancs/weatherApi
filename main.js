@@ -23,14 +23,24 @@
 //         "icon": "//cdn.weatherapi.com/weather/64x64/day/302.png",
 //         "code": 1189
 
-const getValuesInput = () => {};
+const getValuesInput = async () => {
+  let city = document.getElementById("city");
+  let getCity = city.value;
+  let select = document.getElementsById("selector");
+  let selected = select.value;
 
-const fetchData = () => {};
+  await fetchData(getCity, selected);
+};
+//kell ures valtozo aminek az input ad értéket minden alkalomal
+
+const fetchData = async () => {};
 
 const displayData = () => {};
 //a result div-be jeleniti meg a kapot adatokat
 
-const main = () => {};
+const main = () => {
+  getValuesInput();
+};
 
 window.addEventListener("load", main);
 
