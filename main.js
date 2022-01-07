@@ -26,10 +26,6 @@
 const getValuesInput = () => {
   let inp = document.getElementById("city");
   let varos = inp.value;
-  getValuesSelect(varos);
-};
-
-const getValuesSelect = (varos) => {
   let option = document.getElementById("selector");
   let selected = option.value;
   fetchData(varos, selected);
@@ -42,29 +38,45 @@ const fetchData = async (a, b) => {
   fetchedDates(data, b);
 };
 
-const fetchedDates = (data, b) => {
-  let city = data.location.country + ", " + data.location.name;
-  if (b === "temperature") {
-    displayData(data.current.temp_c);
-  }
-  if (b === "conditions") {
-    displayData(data.current.condition.text);
-  }
-  if (b === "humidity") {
-    displayData(data.current.humidity + "%");
-  }
+const fetchedDates = (d, b) => {
+  let city = d.location.country + ", " + d.location.name;
+  let temp = d.current.temp_c;
+  let hum = d.current.humidity;
+  let con = d.current.condition.text;
+  let res;
+  res = b === "tem" ? temp + "C" : b === "con" ? con : hum + "%";
+  //   if (b === "tem") {
+  //     displayData(city, temp + "C");
+  //   }
+  //   if (b === "con") {
+  //     displayData(city, con);
+  //   }
+  //   if (b === "hum") {
+  //     displayData(city, hum + "%");
+  //   }
+  displayData(city, res);
+  console.log(city);
   //console.log(temperature);
 };
 
-const displayData = (res) => {
+const displayData = (city, res) => {
   let empty = document.querySelector("h1");
   if (empty) {
     empty.remove();
   }
   let result = document.getElementById("rezult");
   let szoveg = document.createElement("h1");
-  szoveg.innerText = res;
+  szoveg.innerText = city;
   result.append(szoveg);
+
+  let emptyB = document.querySelector("h2");
+  if (emptyB) {
+    emptyB.remove();
+  }
+
+  let szovegB = document.createElement("h2");
+  szovegB.innerText = res;
+  result.append(szovegB);
 };
 //a result div-be jeleniti meg a kapot adatokat
 
