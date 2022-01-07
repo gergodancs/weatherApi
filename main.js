@@ -25,10 +25,8 @@
 
 const getValuesInput = () => {
   let inp = document.getElementById("city");
-  let varos = inp.value;
-  let option = document.getElementById("selector");
-  let selected = option.value;
-  fetchData(varos, selected);
+  let opt = document.getElementById("selector");
+  fetchData(inp.value, opt.value);
 };
 
 const fetchData = async (a, b) => {
@@ -45,21 +43,12 @@ const fetchedDates = (d, b) => {
   let con = d.current.condition.text;
   let res;
   res = b === "tem" ? temp + "C" : b === "con" ? con : hum + "%";
-  //   if (b === "tem") {
-  //     displayData(city, temp + "C");
-  //   }
-  //   if (b === "con") {
-  //     displayData(city, con);
-  //   }
-  //   if (b === "hum") {
-  //     displayData(city, hum + "%");
-  //   }
   displayData(city, res);
-  console.log(city);
-  //console.log(temperature);
 };
 
 const displayData = (city, res) => {
+  //ide kell ket function, az egyik vizsgalja h van e a masik feltolti
+
   let empty = document.querySelector("h1");
   if (empty) {
     empty.remove();
@@ -78,13 +67,9 @@ const displayData = (city, res) => {
   szovegB.innerText = res;
   result.append(szovegB);
 };
-//a result div-be jeleniti meg a kapot adatokat
-
 const main = () => {
   let btn = document.getElementById("btn");
   btn.addEventListener("click", getValuesInput);
 };
 
 window.addEventListener("load", main);
-
-// az input value-kat a button addeventlisner-jével átt kell adni a fetchdatanak
