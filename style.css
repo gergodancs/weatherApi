@@ -29,3 +29,8 @@ select {
   display: flex;
   justify-content: center;
 }
+.result {
+  background-color: blueviolet;
+  width: 200px;
+  height: 200px;
+}

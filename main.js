@@ -23,23 +23,53 @@
 //         "icon": "//cdn.weatherapi.com/weather/64x64/day/302.png",
 //         "code": 1189
 
-const getValuesInput = async () => {
-  let city = document.getElementById("city");
-  let getCity = city.value;
-  let select = document.getElementsById("selector");
-  let selected = select.value;
+const getValuesInput = () => {
+  let inp = document.getElementById("city");
+  let varos = inp.value;
 
-  await fetchData(getCity, selected);
+  //   let select = document.getElementsById("selector");
+  //   let selected = select.value;
+
+  fetchData(varos);
 };
 //kell ures valtozo aminek az input ad értéket minden alkalomal
 
-const fetchData = async () => {};
+const getValuesSelect = () => {};
 
-const displayData = () => {};
+const fetchData = async (a) => {
+  const url = `http://api.weatherapi.com/v1/current.json?key=2acf3b0415d041fca8a132314211412&q=${a}&aqi=yes`;
+  const res = await fetch(url);
+  const data = await res.json();
+  fetchedDates(data);
+
+  //displayData()
+};
+
+const fetchedDates = (data) => {
+  let temperature = data.current.temp_c;
+  let humidity = data.current.humidity;
+  let conditions = data.current.condition.text;
+  let city = data.location.country + ", " + data.location.name;
+  displayData(temperature);
+  console.log(temperature);
+};
+
+const displayData = (res) => {
+  let empty = document.querySelector("h1");
+  if (empty) {
+    empty.remove();
+  }
+  let result = document.getElementById("rezult");
+  let szoveg = document.createElement("h1");
+
+  szoveg.innerText = res;
+  result.append(szoveg);
+};
 //a result div-be jeleniti meg a kapot adatokat
 
 const main = () => {
-  getValuesInput();
+  let btn = document.getElementById("btn");
+  btn.addEventListener("click", getValuesInput);
 };
 
 window.addEventListener("load", main);
