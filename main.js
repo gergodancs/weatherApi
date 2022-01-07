@@ -26,32 +26,34 @@
 const getValuesInput = () => {
   let inp = document.getElementById("city");
   let varos = inp.value;
-
-  //   let select = document.getElementsById("selector");
-  //   let selected = select.value;
-
-  fetchData(varos);
+  getValuesSelect(varos);
 };
-//kell ures valtozo aminek az input ad értéket minden alkalomal
 
-const getValuesSelect = () => {};
+const getValuesSelect = (varos) => {
+  let option = document.getElementById("selector");
+  let selected = option.value;
+  fetchData(varos, selected);
+};
 
-const fetchData = async (a) => {
+const fetchData = async (a, b) => {
   const url = `http://api.weatherapi.com/v1/current.json?key=2acf3b0415d041fca8a132314211412&q=${a}&aqi=yes`;
   const res = await fetch(url);
   const data = await res.json();
-  fetchedDates(data);
-
-  //displayData()
+  fetchedDates(data, b);
 };
 
-const fetchedDates = (data) => {
-  let temperature = data.current.temp_c;
-  let humidity = data.current.humidity;
-  let conditions = data.current.condition.text;
+const fetchedDates = (data, b) => {
   let city = data.location.country + ", " + data.location.name;
-  displayData(temperature);
-  console.log(temperature);
+  if (b === "temperature") {
+    displayData(data.current.temp_c);
+  }
+  if (b === "conditions") {
+    displayData(data.current.condition.text);
+  }
+  if (b === "humidity") {
+    displayData(data.current.humidity + "%");
+  }
+  //console.log(temperature);
 };
 
 const displayData = (res) => {
@@ -61,7 +63,6 @@ const displayData = (res) => {
   }
   let result = document.getElementById("rezult");
   let szoveg = document.createElement("h1");
-
   szoveg.innerText = res;
   result.append(szoveg);
 };
