@@ -70,6 +70,28 @@ const displayData = (city, res) => {
 const main = () => {
   let btn = document.getElementById("btn");
   btn.addEventListener("click", getValuesInput);
+  fecthSkiResort();
 };
 
 window.addEventListener("load", main);
+
+// App ID
+// 355bc5f1
+// Key
+// a0575c9cdb72f1b055f524e3008451ed
+//192
+//api.weatherunlocked.com/api/resortforecast/999001?num_of_days=3&app_id={APP_ID}&app_key={APP_KEY}
+const fecthSkiResort = async () => {
+  let id = "355bc5f1";
+  let key = "a0575c9cdb72f1b055f524e3008451ed";
+  const url = `https://api.weatherunlocked.com/api/resortforecast/192?num_of_days=3&app_id=${id}&app_key=${key}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log(data.forecast);
+
+  console.log(data.forecast[0].time);
+  console.log(data.forecast[0].date);
+  console.log(data.forecast[0].base.wx_desc);
+  console.log(data.forecast[0].upper.freshsnow_cm);
+  console.log(data.forecast[0].upper.feelslike_c);
+};
