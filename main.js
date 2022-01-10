@@ -42,7 +42,14 @@ const fetchedDates = (d, b) => {
   let hum = d.current.humidity;
   let con = d.current.condition.text;
   let res;
-  res = b === "tem" ? temp + "C" : b === "con" ? con : hum + "%";
+  res =
+    b === "tem"
+      ? temp + "C"
+      : b === "con"
+      ? con
+      : b === "hum"
+      ? hum + "%"
+      : window.alert("válassz egy opciot pls!");
   displayData(city, res);
 };
 
@@ -87,7 +94,7 @@ const fecthSkiResort = async () => {
   const url = `https://api.weatherunlocked.com/api/resortforecast/192?num_of_days=3&app_id=${id}&app_key=${key}`;
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data.forecast);
+  console.log(data);
 
   console.log(data.forecast[0].time);
   console.log(data.forecast[0].date);
